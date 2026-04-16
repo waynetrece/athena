@@ -87,6 +87,20 @@ export const slideData = [
     description: "現有服務頁已有完整的 4 步驟流程內容，這是很好的基礎。我們建議升級為視覺化互動時間軸，搭配動態效果，讓每一步都更生動直覺。",
     type: "timeline-preview" as const,
   },
+  {
+    id: 9,
+    title: "市場觀察",
+    subtitle: "同業網站的共同特點",
+    items: [
+      { icon: "01", text: "信任背書放首屏 — 政府認證、媒體報導、服務案例數量，第一眼就建立信賴感" },
+      { icon: "02", text: "3～5 步流程圖讓新客秒懂 — 用視覺化步驟拆解「從諮詢到回國」的完整旅程" },
+      { icon: "03", text: "LINE / WhatsApp 浮動按鈕 — 隨時可見、一鍵諮詢，大幅降低聯繫門檻" },
+      { icon: "04", text: "術前術後對比照分類呈現 — 依療程分類整理，用真實案例說服潛在客戶" },
+      { icon: "05", text: "多語系切換做得完善 — 做得好的網站支援 7～10 種語言，把握國際客群" },
+      { icon: "06", text: "把「手術」包裝成「完整旅程」— 接機、住宿、翻譯、術後照護，一站式體驗" },
+    ],
+    type: "market-insight" as const,
+  },
 ];
 
 export const painPoints = [

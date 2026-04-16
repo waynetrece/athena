@@ -667,6 +667,68 @@ export function SlideContent({ slide }: { slide: Slide }) {
         </motion.div>
       );
 
+    /* ═══════════════ MARKET INSIGHT ═══════════════ */
+    case "market-insight":
+      return (
+        <motion.div
+          className="max-w-6xl w-full"
+          initial="hidden"
+          animate="show"
+          variants={stagger}
+        >
+          <motion.div variants={fadeUp} className="mb-10">
+            <span className="text-sm tracking-[0.5em] uppercase block mb-4 font-medium" style={{ color: "#B8962D" }}>
+              08 — Market
+            </span>
+            <div className="flex items-end justify-between">
+              <h2 className="font-serif text-5xl md:text-6xl" style={{ color: "#0A0A0A", fontStyle: "italic", textShadow: "0 2px 12px rgba(0,0,0,0.04)" }}>
+                {slide.title}
+              </h2>
+              <p className="text-xl font-medium" style={{ color: "#666666" }}>{slide.subtitle}</p>
+            </div>
+          </motion.div>
+          <GoldShimmer />
+
+          {/* 2-column grid of insights */}
+          <div className="grid grid-cols-2 gap-0 mt-8" style={{
+            border: "1px solid rgba(17,17,17,0.08)",
+            boxShadow: depthShadow,
+          }}>
+            {(slide.items as Array<{ icon: string; text: string }>).map((item, i) => (
+              <motion.div
+                key={i}
+                variants={scaleIn}
+                className="relative group p-8 transition-all duration-500 hover:bg-white/60"
+                style={{
+                  borderRight: i % 2 === 0 ? "1px solid rgba(17,17,17,0.08)" : "none",
+                  borderBottom: i < 4 ? "1px solid rgba(17,17,17,0.08)" : "none",
+                }}
+              >
+                <div className="flex items-start gap-5">
+                  {/* Number */}
+                  <span className="font-serif text-3xl font-light shrink-0 transition-colors duration-500 group-hover:text-[#D4AF37]" style={{ color: "rgba(212,175,55,0.4)" }}>
+                    {item.icon}
+                  </span>
+
+                  {/* Text */}
+                  <div>
+                    <span className="text-base leading-relaxed" style={{ color: "#222222" }}>
+                      {item.text}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Hover corner */}
+                <div className="absolute bottom-3 right-3 w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute bottom-0 right-0 w-full h-[1.5px]" style={{ background: "#D4AF37" }} />
+                  <div className="absolute bottom-0 right-0 h-full w-[1.5px]" style={{ background: "#D4AF37" }} />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      );
+
     default:
       return null;
   }
