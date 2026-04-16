@@ -29,53 +29,70 @@ export function SlideContainer() {
   }, [current, goTo]);
 
   return (
-    <div className="h-screen w-screen overflow-hidden relative select-none" style={{ background: "#FDFCF0" }}>
-      {/* Warm subtle atmosphere */}
+    <div className="h-screen w-screen overflow-hidden relative select-none" style={{
+      background: "linear-gradient(160deg, #F5F3E8 0%, #FDFCF0 30%, #F8F6EB 70%, #F0EDE0 100%)",
+    }}>
+      {/* Multi-layer warm atmosphere for depth */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0" style={{
-          background: "radial-gradient(ellipse at 50% 30%, rgba(212,175,55,0.03) 0%, transparent 60%)",
+          background: "radial-gradient(ellipse at 50% 30%, rgba(212,175,55,0.08) 0%, transparent 55%)",
         }} />
         <div className="absolute inset-0" style={{
-          background: "radial-gradient(ellipse at 80% 80%, rgba(212,175,55,0.015) 0%, transparent 40%)",
+          background: "radial-gradient(ellipse at 80% 80%, rgba(212,175,55,0.04) 0%, transparent 40%)",
+        }} />
+        <div className="absolute inset-0" style={{
+          background: "radial-gradient(ellipse at 20% 70%, rgba(180,160,100,0.03) 0%, transparent 40%)",
         }} />
       </div>
 
-      {/* Subtle paper texture noise */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.02]"
+      {/* Deep vignette for depth — darkens edges */}
+      <div className="absolute inset-0 pointer-events-none z-[2]" style={{
+        boxShadow: "inset 0 0 200px 60px rgba(120,110,80,0.12), inset 0 0 80px 20px rgba(80,70,40,0.06)",
+      }} />
+
+      {/* Paper texture noise — slightly stronger */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.035]"
         style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E\")" }}
       />
 
-      {/* Editorial hairline frame */}
-      <div className="absolute inset-6 pointer-events-none z-20" style={{ border: "0.5px solid rgba(17,17,17,0.06)" }} />
+      {/* Editorial frame — stronger border + shadow for depth */}
+      <div className="absolute inset-6 pointer-events-none z-20" style={{
+        border: "1px solid rgba(17,17,17,0.1)",
+        boxShadow: "0 0 40px rgba(0,0,0,0.04), inset 0 0 60px rgba(212,175,55,0.02)",
+      }} />
 
-      {/* Gold accent corners */}
+      {/* Gold accent corners — larger + bolder */}
       <div className="absolute inset-0 pointer-events-none z-20">
-        <div className="absolute top-6 left-6 w-10 h-10">
-          <div className="absolute top-0 left-0 w-full h-px" style={{ background: "linear-gradient(90deg, rgba(212,175,55,0.4), transparent)" }} />
-          <div className="absolute top-0 left-0 h-full w-px" style={{ background: "linear-gradient(180deg, rgba(212,175,55,0.4), transparent)" }} />
+        {/* Top-left */}
+        <div className="absolute top-6 left-6 w-14 h-14">
+          <div className="absolute top-0 left-0 w-full h-[2px]" style={{ background: "linear-gradient(90deg, #D4AF37, transparent)" }} />
+          <div className="absolute top-0 left-0 h-full w-[2px]" style={{ background: "linear-gradient(180deg, #D4AF37, transparent)" }} />
         </div>
-        <div className="absolute top-6 right-6 w-10 h-10">
-          <div className="absolute top-0 right-0 w-full h-px" style={{ background: "linear-gradient(270deg, rgba(212,175,55,0.4), transparent)" }} />
-          <div className="absolute top-0 right-0 h-full w-px" style={{ background: "linear-gradient(180deg, rgba(212,175,55,0.4), transparent)" }} />
+        {/* Top-right */}
+        <div className="absolute top-6 right-6 w-14 h-14">
+          <div className="absolute top-0 right-0 w-full h-[2px]" style={{ background: "linear-gradient(270deg, #D4AF37, transparent)" }} />
+          <div className="absolute top-0 right-0 h-full w-[2px]" style={{ background: "linear-gradient(180deg, #D4AF37, transparent)" }} />
         </div>
-        <div className="absolute bottom-6 left-6 w-10 h-10">
-          <div className="absolute bottom-0 left-0 w-full h-px" style={{ background: "linear-gradient(90deg, rgba(212,175,55,0.4), transparent)" }} />
-          <div className="absolute bottom-0 left-0 h-full w-px" style={{ background: "linear-gradient(0deg, rgba(212,175,55,0.4), transparent)" }} />
+        {/* Bottom-left */}
+        <div className="absolute bottom-6 left-6 w-14 h-14">
+          <div className="absolute bottom-0 left-0 w-full h-[2px]" style={{ background: "linear-gradient(90deg, #D4AF37, transparent)" }} />
+          <div className="absolute bottom-0 left-0 h-full w-[2px]" style={{ background: "linear-gradient(0deg, #D4AF37, transparent)" }} />
         </div>
-        <div className="absolute bottom-6 right-6 w-10 h-10">
-          <div className="absolute bottom-0 right-0 w-full h-px" style={{ background: "linear-gradient(270deg, rgba(212,175,55,0.4), transparent)" }} />
-          <div className="absolute bottom-0 right-0 h-full w-px" style={{ background: "linear-gradient(0deg, rgba(212,175,55,0.4), transparent)" }} />
+        {/* Bottom-right */}
+        <div className="absolute bottom-6 right-6 w-14 h-14">
+          <div className="absolute bottom-0 right-0 w-full h-[2px]" style={{ background: "linear-gradient(270deg, #D4AF37, transparent)" }} />
+          <div className="absolute bottom-0 right-0 h-full w-[2px]" style={{ background: "linear-gradient(0deg, #D4AF37, transparent)" }} />
         </div>
       </div>
 
       {/* Three.js floating particles */}
       <ParticlesBg />
 
-      {/* Click zones — narrow edge strips so content links remain clickable */}
+      {/* Click zones */}
       <div className="absolute top-0 left-0 w-[12%] h-full z-10 cursor-pointer" onClick={() => goTo(current - 1)} />
       <div className="absolute top-0 right-0 w-[12%] h-full z-10 cursor-pointer" onClick={() => goTo(current + 1)} />
 
-      {/* Slide content with page-turn transition */}
+      {/* Slide content */}
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
@@ -89,7 +106,7 @@ export function SlideContainer() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Page indicator — editorial dashes */}
+      {/* Page indicator */}
       <div className="absolute bottom-7 left-1/2 -translate-x-1/2 flex items-center gap-2 z-30">
         {slideData.map((_, i) => (
           <button
@@ -97,39 +114,37 @@ export function SlideContainer() {
             onClick={() => goTo(i)}
             className="transition-all duration-700 ease-out"
             style={{
-              width: i === current ? "28px" : "6px",
-              height: i === current ? "2px" : "1px",
-              background: i === current
-                ? "#D4AF37"
-                : "rgba(17,17,17,0.15)",
-              boxShadow: i === current ? "0 0 8px rgba(212,175,55,0.3)" : "none",
+              width: i === current ? "32px" : "8px",
+              height: i === current ? "3px" : "2px",
+              background: i === current ? "#D4AF37" : "rgba(17,17,17,0.2)",
+              boxShadow: i === current ? "0 0 10px rgba(212,175,55,0.4)" : "none",
             }}
           />
         ))}
       </div>
 
-      {/* Slide number — editorial serif */}
+      {/* Slide number */}
       <div className="absolute bottom-7 right-10 z-30 flex items-center gap-3">
-        <span className="font-serif text-sm tracking-wider" style={{ color: "#D4AF37" }}>
+        <span className="font-serif text-base tracking-wider font-medium" style={{ color: "#D4AF37" }}>
           {String(current + 1).padStart(2, "0")}
         </span>
-        <div className="w-4 h-px" style={{ background: "rgba(17,17,17,0.15)" }} />
-        <span className="font-serif text-sm tracking-wider" style={{ color: "rgba(17,17,17,0.25)" }}>
+        <div className="w-5 h-[1.5px]" style={{ background: "rgba(17,17,17,0.2)" }} />
+        <span className="font-serif text-base tracking-wider" style={{ color: "rgba(17,17,17,0.35)" }}>
           {String(total).padStart(2, "0")}
         </span>
       </div>
 
-      {/* Brand label — top left editorial */}
+      {/* Brand label */}
       <div className="absolute top-7 left-10 z-30 flex items-center gap-3">
-        <div className="w-4 h-px" style={{ background: "rgba(212,175,55,0.4)" }} />
-        <span className="text-[10px] tracking-[0.35em] uppercase font-sans" style={{ color: "rgba(17,17,17,0.3)" }}>
+        <div className="w-5 h-[1.5px]" style={{ background: "#D4AF37" }} />
+        <span className="text-xs tracking-[0.35em] uppercase font-sans font-medium" style={{ color: "rgba(17,17,17,0.45)" }}>
           Athena Proposal
         </span>
       </div>
 
-      {/* Volume / date — top right editorial */}
+      {/* Date */}
       <div className="absolute top-7 right-10 z-30">
-        <span className="text-[10px] tracking-[0.3em] uppercase" style={{ color: "rgba(17,17,17,0.2)" }}>
+        <span className="text-xs tracking-[0.3em] uppercase font-medium" style={{ color: "rgba(17,17,17,0.3)" }}>
           April 2026
         </span>
       </div>
