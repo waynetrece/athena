@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import dynamic from "next/dynamic";
 import { slideData } from "@/lib/data";
@@ -13,23 +13,26 @@ const ParticlesBg = dynamic(
 
 export function SlideContainer() {
   const [current, setCurrent] = useState(0);
+  const dirRef = useRef(1); // 1 = forward, -1 = backward
   const total = slideData.length;
 
   const goTo = useCallback((n: number) => {
-    if (n >= 0 && n < total) setCurrent(n);
-  }, [total]);
+    if (n >= 0 && n < total) {
+      dirRef.current = n > current ? 1 : -1;
+      setCurrent(n);
+    }
+  }, [total, current]);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "ArrowRight" || e.key === " ") { e.preventDefault(); goTo(current + 1); }
       if (e.key === "ArrowLeft") { e.preventDefault(); goTo(current - 1); }
-      // Number keys 1-9 jump to that slide
       const num = parseInt(e.key);
       if (num >= 1 && num <= total) { e.preventDefault(); goTo(num - 1); }
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
-  }, [current, goTo]);
+  }, [current, goTo, total]);
 
   return (
     <div className="h-screen w-screen overflow-hidden relative select-none" style={{
@@ -95,14 +98,30 @@ export function SlideContainer() {
       <div className="absolute top-0 left-0 w-[12%] h-full z-10 cursor-pointer" onClick={() => goTo(current - 1)} />
       <div className="absolute top-0 right-0 w-[12%] h-full z-10 cursor-pointer" onClick={() => goTo(current + 1)} />
 
-      {/* Slide content */}
-      <AnimatePresence mode="wait">
+      {/* Slide content — horizontal parallax transition */}
+      <AnimatePresence mode="wait" custom={dirRef.current}>
         <motion.div
           key={current}
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -12 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          custom={dirRef.current}
+          initial={(dir: number) => ({
+            opacity: 0,
+            x: dir * 120,
+            scale: 0.96,
+            filter: "blur(4px)",
+          })}
+          animate={{
+            opacity: 1,
+            x: 0,
+            scale: 1,
+            filter: "blur(0px)",
+          }}
+          exit={(dir: number) => ({
+            opacity: 0,
+            x: dir * -80,
+            scale: 0.98,
+            filter: "blur(3px)",
+          })}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="h-full w-full flex items-center justify-center px-12 md:px-24 relative z-[5]"
         >
           <SlideContent slide={slideData[current]} />
