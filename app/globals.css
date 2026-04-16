@@ -1,6 +1,13 @@
 @import "tailwindcss";
 
 @theme {
+  /* ─── S19 Luxury Editorial ─── */
+  --color-cream: #FDFCF0;
+  --color-cream-warm: #F8F7F0;
+  --color-cream-deep: #F0EEE2;
+  --color-ink: #111111;
+  --color-ink-soft: #333333;
+  --color-ink-muted: #999999;
   --color-gold: #D4AF37;
   --color-gold-dim: #C5A037;
   --color-gold-muted: rgba(212, 175, 55, 0.3);
@@ -14,36 +21,142 @@
 }
 
 body {
-  background: #000000;
-  color: #E5E5E5;
+  background: #FDFCF0;
+  color: #111111;
   font-family: var(--font-sans);
 }
 
 ::selection {
-  background: rgba(212, 175, 55, 0.3);
-  color: #D4AF37;
-}
-
-.gold-hairline {
-  border-color: rgba(212, 175, 55, 0.3);
-  border-width: 0.5px;
+  background: rgba(212, 175, 55, 0.2);
+  color: #111111;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+/* ─── Gold Gradient Text ─── */
 .text-gold-gradient {
-  background: linear-gradient(135deg, #D4AF37 0%, #F5E6A3 50%, #D4AF37 100%);
+  background: linear-gradient(135deg, #D4AF37 0%, #F5E6A3 40%, #D4AF37 60%, #C5A037 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
+/* ─── Editorial Ink Text ─── */
+.text-ink-gradient {
+  background: linear-gradient(180deg, #111111 0%, #333333 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Gold Hairline Border ─── */
+.gold-hairline {
+  border-color: rgba(212, 175, 55, 0.2);
+  border-width: 0.5px;
+}
+
+/* ─── Ink Hairline Border ─── */
+.ink-hairline {
+  border-color: rgba(17, 17, 17, 0.08);
+  border-width: 0.5px;
+}
+
+/* ─── Gold Pulse CTA ─── */
 @keyframes gold-pulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); }
-  50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.5); }
+  0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.15); }
+  50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.4); }
 }
 .animate-gold-pulse {
   animation: gold-pulse 3s ease-in-out infinite;
+}
+
+/* ─── Shimmer animation ─── */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.08) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 6s ease-in-out infinite;
+}
+
+/* ─── Section Divider — Editorial ─── */
+.section-divider {
+  height: 0.5px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(17,17,17,0.08) 15%,
+    rgba(17,17,17,0.15) 50%,
+    rgba(17,17,17,0.08) 85%,
+    transparent 100%
+  );
+}
+
+/* ─── Gold Foil Texture Overlay ─── */
+.gold-foil-texture {
+  position: relative;
+}
+.gold-foil-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(212,175,55,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(212,175,55,0.02) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(212,175,55,0.02) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Diamond Accent ─── */
+.diamond-accent::before {
+  content: '◇';
+  color: rgba(212,175,55,0.4);
+  font-size: 8px;
+  margin-right: 12px;
+}
+.diamond-accent::after {
+  content: '◇';
+  color: rgba(212,175,55,0.4);
+  font-size: 8px;
+  margin-left: 12px;
+}
+
+/* ─── Luxury Card with gold gradient border ─── */
+.luxury-card {
+  position: relative;
+  background: #FDFCF0;
+  overflow: hidden;
+}
+.luxury-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 0.5px;
+  background: linear-gradient(135deg, rgba(212,175,55,0.3), rgba(212,175,55,0.05), rgba(212,175,55,0.2));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ─── Glow Line ─── */
+.glow-line {
+  box-shadow: 0 0 8px rgba(212,175,55,0.3), 0 0 20px rgba(212,175,55,0.1);
+}
+
+/* ─── Editorial text reveal ─── */
+@keyframes reveal-up {
+  from { clip-path: inset(100% 0 0 0); opacity: 0; }
+  to { clip-path: inset(0 0 0 0); opacity: 1; }
+}
+
+/* ─── Line draw animation ─── */
+@keyframes draw-line {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
 }
