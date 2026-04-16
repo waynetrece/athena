@@ -90,10 +90,10 @@ export function StepSchedule({ data, update, onNext, onBack }: Props) {
 
   return (
     <div>
-      <h2 className="font-serif text-4xl text-center mb-10" style={{
+      <h2 className="font-serif text-5xl md:text-6xl text-center mb-12" style={{
         color: "#0A0A0A",
         fontStyle: "italic",
-        textShadow: "0 2px 12px rgba(0,0,0,0.04)",
+        textShadow: "0 2px 15px rgba(0,0,0,0.05)",
       }}>
         選擇諮詢方式與時間
       </h2>
@@ -106,11 +106,11 @@ export function StepSchedule({ data, update, onNext, onBack }: Props) {
             <button
               key={m.id}
               onClick={() => update({ method: m.id })}
-              className="p-4 text-center text-sm transition-all duration-500"
+              className="p-5 text-center transition-all duration-500"
               style={{
-                border: `1.5px solid ${selected ? "#D4AF37" : "rgba(17,17,17,0.08)"}`,
-                background: selected ? "rgba(212,175,55,0.06)" : "rgba(255,255,255,0.4)",
-                boxShadow: selected ? "0 4px 16px rgba(212,175,55,0.12)" : "none",
+                border: `2px solid ${selected ? "#D4AF37" : "rgba(17,17,17,0.08)"}`,
+                background: selected ? "rgba(212,175,55,0.06)" : "rgba(255,255,255,0.5)",
+                boxShadow: selected ? "0 6px 24px rgba(212,175,55,0.2)" : "0 3px 12px rgba(0,0,0,0.04)",
               }}
             >
               <div className="flex justify-center mb-2" style={{

@@ -15,20 +15,21 @@ export function StepContact({ data, update, onNext, onBack }: Props) {
 
   return (
     <div>
-      <h2 className="font-serif text-4xl text-center mb-2" style={{
+      <h2 className="font-serif text-5xl md:text-6xl text-center mb-3" style={{
         color: "#0A0A0A",
         fontStyle: "italic",
-        textShadow: "0 2px 12px rgba(0,0,0,0.04)",
+        textShadow: "0 2px 15px rgba(0,0,0,0.05)",
       }}>
         最後一步
       </h2>
-      <p className="text-center mb-10 text-sm tracking-wider" style={{ color: "#999999" }}>
+      <p className="text-center mb-12 text-base tracking-wider" style={{ color: "#999999" }}>
         留下聯絡方式，我們會盡快與您確認
       </p>
 
       <div className="space-y-6 p-8" style={{
-        border: "1px solid rgba(17,17,17,0.06)",
-        background: "rgba(255,255,255,0.4)",
+        border: "1.5px solid rgba(17,17,17,0.08)",
+        background: "rgba(255,255,255,0.5)",
+        boxShadow: "0 4px 20px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.03)",
       }}>
         <div>
           <label className="text-xs tracking-[0.2em] uppercase font-medium block mb-2" style={{ color: "#B8962D" }}>

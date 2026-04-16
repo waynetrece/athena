@@ -63,14 +63,14 @@ const services = [
 export function StepService({ data, update, onNext }: Props) {
   return (
     <div>
-      <h2 className="font-serif text-4xl text-center mb-2" style={{
+      <h2 className="font-serif text-5xl md:text-6xl text-center mb-3" style={{
         color: "#0A0A0A",
         fontStyle: "italic",
-        textShadow: "0 2px 12px rgba(0,0,0,0.04)",
+        textShadow: "0 2px 15px rgba(0,0,0,0.05)",
       }}>
         您想諮詢什麼項目？
       </h2>
-      <p className="text-center mb-10 text-sm tracking-wider" style={{ color: "#999999" }}>
+      <p className="text-center mb-12 text-base tracking-wider" style={{ color: "#999999" }}>
         選擇一個療程類別
       </p>
 
@@ -81,11 +81,11 @@ export function StepService({ data, update, onNext }: Props) {
             <motion.button
               key={svc.id}
               onClick={() => update({ service: svc.id })}
-              className="p-6 text-center transition-all duration-500 group"
+              className="p-8 text-center transition-all duration-500 group"
               style={{
-                border: `1.5px solid ${selected ? "#D4AF37" : "rgba(17,17,17,0.08)"}`,
-                background: selected ? "rgba(212,175,55,0.06)" : "rgba(255,255,255,0.4)",
-                boxShadow: selected ? "0 4px 20px rgba(212,175,55,0.15)" : "0 2px 8px rgba(0,0,0,0.03)",
+                border: `2px solid ${selected ? "#D4AF37" : "rgba(17,17,17,0.08)"}`,
+                background: selected ? "rgba(212,175,55,0.06)" : "rgba(255,255,255,0.5)",
+                boxShadow: selected ? "0 6px 24px rgba(212,175,55,0.2), 0 2px 8px rgba(0,0,0,0.04)" : "0 4px 16px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.03)",
               }}
               whileHover={{ y: -2, transition: { duration: 0.3 } }}
               whileTap={{ scale: 0.98 }}
@@ -95,7 +95,7 @@ export function StepService({ data, update, onNext }: Props) {
               }}>
                 {serviceIcons[svc.id]}
               </div>
-              <div className="text-sm font-medium tracking-wider" style={{
+              <div className="text-base font-medium tracking-wider" style={{
                 color: selected ? "#B8962D" : "#555555",
               }}>
                 {svc.label}
