@@ -261,7 +261,7 @@ export function SlideContent({ slide }: { slide: Slide }) {
                     textShadow: "0 2px 15px rgba(0,0,0,0.05)",
                   }}
                 >
-                  網站<br />全面<br />體檢
+                  我們<br />看了<br />這些
                 </h2>
                 <motion.div
                   className="w-20 h-[2px] origin-left"
