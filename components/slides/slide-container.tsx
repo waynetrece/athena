@@ -23,6 +23,9 @@ export function SlideContainer() {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "ArrowRight" || e.key === " ") { e.preventDefault(); goTo(current + 1); }
       if (e.key === "ArrowLeft") { e.preventDefault(); goTo(current - 1); }
+      // Number keys 1-9 jump to that slide
+      const num = parseInt(e.key);
+      if (num >= 1 && num <= total) { e.preventDefault(); goTo(num - 1); }
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
