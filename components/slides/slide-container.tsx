@@ -103,24 +103,29 @@ export function SlideContainer() {
         <motion.div
           key={current}
           custom={dirRef.current}
-          initial={(dir: number) => ({
-            opacity: 0,
-            x: dir * 120,
-            scale: 0.96,
-            filter: "blur(4px)",
-          })}
-          animate={{
-            opacity: 1,
-            x: 0,
-            scale: 1,
-            filter: "blur(0px)",
+          variants={{
+            enter: (dir: number) => ({
+              opacity: 0,
+              x: dir * 120,
+              scale: 0.96,
+              filter: "blur(4px)",
+            }),
+            center: {
+              opacity: 1,
+              x: 0,
+              scale: 1,
+              filter: "blur(0px)",
+            },
+            exit: (dir: number) => ({
+              opacity: 0,
+              x: dir * -80,
+              scale: 0.98,
+              filter: "blur(3px)",
+            }),
           }}
-          exit={(dir: number) => ({
-            opacity: 0,
-            x: dir * -80,
-            scale: 0.98,
-            filter: "blur(3px)",
-          })}
+          initial="enter"
+          animate="center"
+          exit="exit"
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="h-full w-full flex items-center justify-center px-12 md:px-24 relative z-[5]"
         >
